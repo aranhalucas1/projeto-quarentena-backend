@@ -2,10 +2,13 @@ package com.projeto.quarentena.services;
 
 import com.projeto.quarentena.domain.Categoria;
 import com.projeto.quarentena.repositories.CategoriaRepository;
+import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CategoriaService {
@@ -15,5 +18,13 @@ public class CategoriaService {
 
     public List<Categoria> findAll() {
         return categoriaRepository.findAll();
+    }
+
+    public Optional<Categoria> findById(Integer id) {
+        if(id == null) {
+            return null;
+        }
+
+        return categoriaRepository.findById(id);
     }
 }
