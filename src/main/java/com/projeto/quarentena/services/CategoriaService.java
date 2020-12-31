@@ -2,6 +2,7 @@ package com.projeto.quarentena.services;
 
 import com.projeto.quarentena.domain.Categoria;
 import com.projeto.quarentena.repositories.CategoriaRepository;
+import com.projeto.quarentena.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,12 +19,9 @@ public class CategoriaService {
         return categoriaRepository.findAll();
     }
 
-    public Optional<Categoria> findById(Integer id) {
-        if(id == null) {
-            return null;
-        }
-
-        return categoriaRepository.findById(id);
+    public Categoria findById(Integer id) {
+        Optional<Categoria> obj = categoriaRepository.findById(id);
+        return obj.orElseThrow(() -> new ObjectNotFoundException("O id " + id + "não foi encontrado"));
     }
 
     public Categoria insert(Categoria obj) {

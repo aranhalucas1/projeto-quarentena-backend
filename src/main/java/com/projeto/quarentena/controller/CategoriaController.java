@@ -27,9 +27,6 @@ public class CategoriaController {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<Object> find(@PathVariable Integer id) {
         var obj = categoriaService.findById(id);
-        if(obj.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
         return ResponseEntity.ok().body(obj);
     }
 
