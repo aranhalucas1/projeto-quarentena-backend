@@ -28,18 +28,20 @@ public class DBService {
         Categoria cat1 = new Categoria(null, "Informática");
         Categoria cat2 = new Categoria(null, "ELetrodomésticos");
         Categoria cat3 = new Categoria(null, "Lazer");
+        p1.getCategorias().add(cat1);
+        p2.getCategorias().add(cat2);
+        p3.getCategorias().add(cat2);
+        p4.getCategorias().add(cat3);
 
         cat1.getProdutos().add(p1);
         cat2.getProdutos().addAll(Arrays.asList(p2, p3));
         cat3.getProdutos().add(p4);
 
-        p1.getCategoria().add(cat1);
-        p2.getCategoria().add(cat2);
-        p3.getCategoria().add(cat2);
-        p4.getCategoria().add(cat3);
-        
-        produtoRepository.saveAll(Arrays.asList(p1, p2, p3, p4));
+
+
         categoriaRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
+        produtoRepository.saveAll(Arrays.asList(p1, p2, p3, p4));
+
 
 
 

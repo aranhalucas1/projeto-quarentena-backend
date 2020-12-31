@@ -17,8 +17,8 @@ public class Produto implements Serializable {
     private String nome;
     private Double preco;
 
-    @ManyToMany(cascade = CascadeType.ALL)
     @JsonIgnore
+    @ManyToMany
     @JoinTable(name = "PRODUTO_CATEGORIA",
                 joinColumns = @JoinColumn(name = "produto_id"),
                 inverseJoinColumns = @JoinColumn(name = "categoria_id"))
@@ -56,11 +56,11 @@ public class Produto implements Serializable {
         this.preco = preco;
     }
 
-    public List<Categoria> getCategoria() {
+    public List<Categoria> getCategorias() {
         return categorias;
     }
 
-    public void setCategoria(List<Categoria> categorias) {
+    public void setCategorias(List<Categoria> categorias) {
         this.categorias = categorias;
     }
 

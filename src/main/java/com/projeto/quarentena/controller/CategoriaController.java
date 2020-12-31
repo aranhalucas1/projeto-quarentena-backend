@@ -1,6 +1,7 @@
 package com.projeto.quarentena.controller;
 
 import com.projeto.quarentena.domain.Categoria;
+import com.projeto.quarentena.dto.CategoriaDTO;
 import com.projeto.quarentena.services.CategoriaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +11,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/categorias")
@@ -19,9 +21,10 @@ public class CategoriaController {
     private CategoriaService categoriaService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<List<Categoria>> findAll() {
+    public ResponseEntity<List<CategoriaDTO>> findAll() {
         List<Categoria> list = categoriaService.findAll();
-        return ResponseEntity.ok().body(list);
+        List<CategoriaDTO> listDto = list.stream().map(obj -> new CategoriaDTO(obj)).collect(Collectors.toList());
+        return ResponseEntity.ok().body(listDto);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
