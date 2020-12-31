@@ -1,10 +1,9 @@
 package com.projeto.quarentena.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -15,6 +14,9 @@ public class Categoria implements Serializable {
     public Integer id;
 
     public String nome;
+
+    @ManyToMany(mappedBy = "categorias")
+    public List<Produto> produtos = new ArrayList<>();
 
     public Categoria() {}
 
@@ -37,6 +39,14 @@ public class Categoria implements Serializable {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public List<Produto> getProdutos() {
+        return produtos;
+    }
+
+    public void setProdutos(List<Produto> produtos) {
+        this.produtos = produtos;
     }
 
     @Override
