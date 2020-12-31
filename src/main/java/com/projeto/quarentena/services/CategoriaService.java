@@ -2,9 +2,7 @@ package com.projeto.quarentena.services;
 
 import com.projeto.quarentena.domain.Categoria;
 import com.projeto.quarentena.repositories.CategoriaRepository;
-import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,4 +25,9 @@ public class CategoriaService {
 
         return categoriaRepository.findById(id);
     }
-}
+
+    public Categoria insert(Categoria obj) {
+        obj.setId(null);
+        return categoriaRepository.save(obj);
+    }
+   }
