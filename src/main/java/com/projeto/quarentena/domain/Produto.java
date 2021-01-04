@@ -14,7 +14,9 @@ public class Produto implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     private String nome;
+    private String descricao;
     private Double preco;
 
     @JsonIgnore
@@ -26,10 +28,11 @@ public class Produto implements Serializable {
 
     public Produto() {}
 
-    public Produto(Integer id, String nome, Double preco) {
+    public Produto(Integer id, String nome, Double preco, String descricao) {
         this.id = id;
         this.nome = nome;
         this.preco = preco;
+        this.descricao = descricao;
     }
 
     public Integer getId() {
@@ -62,6 +65,14 @@ public class Produto implements Serializable {
 
     public void setCategorias(List<Categoria> categorias) {
         this.categorias = categorias;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
     @Override
